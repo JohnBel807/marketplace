@@ -138,7 +138,7 @@ export default function PricingPage() {
       <div className="text-center mt-14">
         <p className="text-earth-400 text-sm mb-3">¿Tienes dudas? Escríbenos por WhatsApp</p>
         <a
-          href="https://wa.me/573001234567?text=Hola,%20tengo%20dudas%20sobre%20los%20planes%20de%20VelezYRicaurte.com"
+          href="https://wa.me/573116861370?text=Hola,%20tengo%20dudas%20sobre%20los%20planes%20de%20VelezYRicaurte.info"
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-xl transition-colors"

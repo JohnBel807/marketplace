@@ -231,7 +231,7 @@ export default function PublishPage() {
             </div>
             <div>
               <label className="label">WhatsApp</label>
-              <input className="input" placeholder="573001234567" {...register('contact_whatsapp')} />
+              <input className="input" placeholder="57311686137X" {...register('contact_whatsapp')} />
             </div>
           </div>
         </div>

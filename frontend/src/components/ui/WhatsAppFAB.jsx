@@ -1,4 +1,4 @@
-export default function WhatsAppFAB({ number = '573001234567', message = '¡Hola! Necesito ayuda con VelezYRicaurte.com' }) {
+export default function WhatsAppFAB({ number = '573116861370', message = '¡Hola! Necesito ayuda con VelezYRicaurte.info' }) {
   const url = `https://wa.me/${number}?text=${encodeURIComponent(message)}`
   return (
     <a

@@ -62,11 +62,11 @@ export default function Footer() {
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Mail size={14} className="text-brand-400 shrink-0" />
-                <a href="mailto:info@velezyricaurte.com" className="hover:text-brand-400 transition-colors">info@velezyricaurte.com</a>
+                <a href="mailto:johnroa@velezyricaurte.com" className="hover:text-brand-400 transition-colors">johnroa@velezyricaurte.com</a>
               </li>
               <li className="flex items-center gap-2">
                 <MessageCircle size={14} className="text-green-400 shrink-0" />
-                <a href="https://wa.me/573001234567" target="_blank" rel="noreferrer" className="hover:text-brand-400 transition-colors">WhatsApp soporte</a>
+                <a href="https://wa.me/573116861370" target="_blank" rel="noreferrer" className="hover:text-brand-400 transition-colors">WhatsApp soporte</a>
               </li>
             </ul>
           </div>

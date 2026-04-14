@@ -38,7 +38,7 @@ export function TerminosPage() {
       <div className="mt-10 p-5 bg-earth-50 rounded-2xl text-sm text-earth-500">
         <strong className="text-earth-700">Tecnoriente J.B.</strong> · NIT 910.168.07-8 · Vélez, Santander, Colombia
         <br />
-        Contacto: <a href="mailto:info@velezyricaurte.com" className="text-brand-600 hover:underline">info@velezyricaurte.com</a>
+        Contacto: <a href="mailto:johnroa@velezyricaurte.com" className="text-brand-600 hover:underline">johnroa@velezyricaurte.com</a>
       </div>
     </div>
   )
@@ -52,7 +52,7 @@ export function PrivacidadPage() {
 
       <Section title="1. Responsable del tratamiento">
         <p><strong>Tecnoriente J.B.</strong>, NIT 910.168.07-8, con domicilio en Vélez, Santander, Colombia, es responsable del tratamiento de los datos personales recolectados en VelezYRicaurte.com.</p>
-        <p>Contacto del responsable: <a href="mailto:info@velezyricaurte.com" className="text-brand-600">info@velezyricaurte.com</a></p>
+        <p>Contacto del responsable: <a href="mailto:johnroa@velezyricaurte.com" className="text-brand-600">johnroa@velezyricaurte.com</a></p>
       </Section>
       <Section title="2. Datos que recolectamos">
         <p>Recolectamos: nombre completo, correo electrónico, número de teléfono/WhatsApp, municipio de residencia, y datos de uso del sitio (páginas visitadas, anuncios publicados).</p>
@@ -64,7 +64,7 @@ export function PrivacidadPage() {
       </Section>
       <Section title="4. Tus derechos (Habeas Data)">
         <p>Tienes derecho a: conocer, actualizar, rectificar y suprimir tus datos; revocar la autorización de tratamiento; presentar quejas ante la Superintendencia de Industria y Comercio.</p>
-        <p>Para ejercer estos derechos, escríbenos a <a href="mailto:info@velezyricaurte.com" className="text-brand-600">info@velezyricaurte.com</a>. Respondemos en un plazo máximo de 15 días hábiles.</p>
+        <p>Para ejercer estos derechos, escríbenos a <a href="mailto:johnroa@velezyricaurte.com" className="text-brand-600">johnroa@velezyricaurte.com</a>. Respondemos en un plazo máximo de 15 días hábiles.</p>
       </Section>
       <Section title="5. Cookies">
         <p>Usamos cookies de sesión (autenticación) y de preferencias (filtros de búsqueda). No usamos cookies de seguimiento publicitario.</p>
@@ -85,7 +85,7 @@ export function PQRPage() {
     const email = data.get('email')
     const mensaje = data.get('mensaje')
     const waMsg = `PQR - ${tipo}\nNombre: ${nombre}\nEmail: ${email}\nMensaje: ${mensaje}`
-    window.open(`https://wa.me/573001234567?text=${encodeURIComponent(waMsg)}`, '_blank')
+    window.open(`https://wa.me/573116861370?text=${encodeURIComponent(waMsg)}`, '_blank')
   }
 
   return (
@@ -133,11 +133,11 @@ export function PQRPage() {
         <div className="mt-6 pt-6 border-t border-earth-100 space-y-2 text-sm text-earth-500">
           <p className="flex items-center gap-2">
             <Mail size={15} className="text-brand-400" />
-            <a href="mailto:info@velezyricaurte.com" className="hover:text-brand-600">info@velezyricaurte.com</a>
+            <a href="mailto:johnroa@velezyricaurte.com" className="hover:text-brand-600">johnroa@velezyricaurte.com</a>
           </p>
           <p className="flex items-center gap-2">
             <MessageCircle size={15} className="text-green-500" />
-            <a href="https://wa.me/573001234567" target="_blank" rel="noreferrer" className="hover:text-brand-600">WhatsApp directo</a>
+            <a href="https://wa.me/573116861370" target="_blank" rel="noreferrer" className="hover:text-brand-600">WhatsApp directo</a>
           </p>
         </div>
       </div>

@@ -1,27 +1,54 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, BackgroundTasks
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+from datetime import datetime, timedelta
 from app.core.database import get_db
 from app.core.security import verify_password, hash_password, create_access_token, get_current_active_user
-from app.models.user import User
+from app.models.user import User, SubscriptionPlan
 from app.schemas import UserRegister, Token, UserOut
+from app.utils.email import send_welcome_email
 
 router = APIRouter()
 
+TRIAL_DAYS = 30
+
 @router.post("/register", response_model=UserOut, status_code=201)
-def register(user_data: UserRegister, db: Session = Depends(get_db)):
+def register(
+    user_data: UserRegister,
+    background_tasks: BackgroundTasks,
+    db: Session = Depends(get_db)
+):
     if db.query(User).filter(User.email == user_data.email).first():
         raise HTTPException(status_code=400, detail="El correo ya está registrado")
+
+    now = datetime.utcnow()
+    trial_expires = now + timedelta(days=TRIAL_DAYS)
+
     user = User(
         full_name=user_data.full_name,
         email=user_data.email,
         phone=user_data.phone,
         city=user_data.city or "Vélez",
-        hashed_password=hash_password(user_data.password)
+        hashed_password=hash_password(user_data.password),
+        # Trial automático de 30 días
+        subscription_plan=SubscriptionPlan.TRIAL,
+        subscription_status="active",
+        trial_started_at=now,
+        trial_expires_at=trial_expires,
+        trial_used=True,
     )
     db.add(user)
     db.commit()
     db.refresh(user)
+
+    # Enviar email de bienvenida en background
+    background_tasks.add_task(
+        send_welcome_email,
+        full_name=user.full_name,
+        email=user.email,
+        trial_days=TRIAL_DAYS
+    )
+
     return user
 
 @router.post("/login", response_model=Token)

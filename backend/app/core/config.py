@@ -24,12 +24,17 @@ class Settings(BaseSettings):
     CROSS_PORTAL_SECRET: str = "cambia-esto-secreto-compartido-entre-portales"
     COM_PORTAL_API_URL: str = "https://api.velezyricaurte.com/api"
     INFO_PORTAL_API_URL: str = "https://api.velezyricaurte.info/api"
+
+    # Email SMTP
+    SMTP_HOST: str = "smtp.gmail.com"
     SMTP_PORT: int = 587
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
 
+    # Trial
+    TRIAL_DAYS: int = 30
+
     class Config:
         env_file = ".env"
-        extra = "ignore"
-        
+
 settings = Settings()

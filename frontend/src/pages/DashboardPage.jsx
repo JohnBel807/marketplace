@@ -54,8 +54,8 @@ export default function DashboardPage() {
         {[
           { label: 'Anuncios activos', value: activeCount, icon: <CheckCircle size={18} className="text-green-500" /> },
           { label: 'Total publicados', value: listings.length, icon: <Eye size={18} className="text-brand-500" /> },
-          { label: 'Plan actual', value: user?.subscription_plan || 'free', icon: <AlertCircle size={18} className="text-amber-500" /> },
-          { label: 'Límite', value: user?.max_listings === 9999 ? '∞' : user?.max_listings, icon: <Clock size={18} className="text-earth-400" /> },
+          { label: 'Plan actual', value: user?.is_trial ? 'Trial' : user?.subscription_plan || 'free', icon: <AlertCircle size={18} className="text-amber-500" /> },
+          { label: user?.is_trial ? 'Días restantes' : 'Límite', value: user?.is_trial ? user?.trial_days_remaining : (user?.max_listings === 9999 ? '∞' : user?.max_listings), icon: <Clock size={18} className="text-earth-400" /> },
         ].map(({ label, value, icon }) => (
           <div key={label} className="card p-4">
             <div className="flex items-center gap-2 mb-1">{icon}<span className="text-xs text-earth-400">{label}</span></div>
@@ -64,8 +64,19 @@ export default function DashboardPage() {
         ))}
       </div>
 
+      {/* Trial banner */}
+      {user?.is_trial && (
+        <div className="bg-green-50 border border-green-200 rounded-2xl p-5 flex items-center justify-between mb-8">
+          <div>
+            <p className="font-semibold text-green-800">🎉 Trial activo — {user.trial_days_remaining} días restantes</p>
+            <p className="text-sm text-green-600">Estás disfrutando tu prueba gratis en ambos portales. ¡Publica hasta 3 anuncios!</p>
+          </div>
+          <Link to="/pricing" className="btn-primary shrink-0 bg-green-600 hover:bg-green-700">Ver planes</Link>
+        </div>
+      )}
+
       {/* Subscription banner */}
-      {!user?.has_active_subscription && (
+      {!user?.has_active_subscription && !user?.is_trial && (
         <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 flex items-center justify-between mb-8">
           <div>
             <p className="font-semibold text-amber-800">No tienes suscripción activa</p>

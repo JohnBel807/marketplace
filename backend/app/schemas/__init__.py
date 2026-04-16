@@ -31,6 +31,8 @@ class UserOut(BaseModel):
     subscription_plan: SubscriptionPlan
     subscription_status: str
     has_active_subscription: bool
+    is_trial: bool
+    trial_days_remaining: int
     max_listings: int
     created_at: datetime
 

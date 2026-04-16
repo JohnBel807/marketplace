@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status, File, UploadFile
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import Optional, List
@@ -6,7 +6,8 @@ from app.core.database import get_db
 from app.core.security import get_current_active_user, require_subscriber
 from app.models.user import User
 from app.models.listing import Listing, ListingCategory, ListingStatus
-from app.schemas import ListingCreate, ListingUpdate, ListingOut, ListingList
+from app.schemas import ListingCreate, ListingUpdate, ListingOut, ListingList 
+from app.utils.cloudinary import upload_multiple
 
 router = APIRouter()
 
@@ -121,6 +122,14 @@ def delete_listing(
         raise HTTPException(status_code=403, detail="Sin permiso")
     db.delete(listing)
     db.commit()
+
+@router.post("/upload-photos")
+async def upload_photos(
+    files: List[UploadFile] = File(...),
+    current_user: User = Depends(get_current_active_user)
+):
+    urls = await upload_multiple(files, folder=f"velezyricaurte/{current_user.id}")
+    return {"urls": urls}
 
 @router.get("/my/listings", response_model=List[ListingOut])
 def my_listings(current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):

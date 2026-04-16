@@ -4,7 +4,7 @@ buildCommand = "pip install -r requirements.txt"
 
 [deploy]
 # Cambiamos $PORT por ${PORT} para asegurar que se lea como número
-startCommand = "uvicorn app.main:app --host 0.0.0.0 --port ${PORT}"
+startCommand = "uvicorn main:app --host 0.0.0.0 --port 8000"
 healthcheckTimeout = 120
 restartPolicyType = "on_failure"
 restartPolicyMaxRetries = 3

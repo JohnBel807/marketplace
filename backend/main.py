@@ -6,9 +6,11 @@ from app.routers import auth, listings, users, subscriptions, categories, cross_
 app = FastAPI(
     title="VelezYRicaurte Marketplace API",
     description="Marketplace local para la región de Vélez y Ricaurte, Santander",
-    version="1.0.0",
-    redirect_slashes=False
+    version="1.0.0"
 )
+
+from uvicorn.middleware.proxy_headers import ProxyHeadersMiddleware
+app.add_middleware(ProxyHeadersMiddleware, trusted_hosts="*")
 
 app.add_middleware(
     CORSMiddleware,

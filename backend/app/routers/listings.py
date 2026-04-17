@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, Query, status, File, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import Optional, List
@@ -6,12 +6,11 @@ from app.core.database import get_db
 from app.core.security import get_current_active_user, require_subscriber
 from app.models.user import User
 from app.models.listing import Listing, ListingCategory, ListingStatus
-from app.schemas import ListingCreate, ListingUpdate, ListingOut, ListingList 
-from app.utils.cloudinary import upload_multiple
+from app.schemas import ListingCreate, ListingUpdate, ListingOut, ListingList
 
 router = APIRouter()
 
-@router.get("", response_model=ListingList)
+@router.get("/", response_model=ListingList)
 def get_listings(
     page: int = Query(1, ge=1),
     page_size: int = Query(12, ge=1, le=50),
@@ -61,7 +60,7 @@ def get_listing(listing_id: int, db: Session = Depends(get_db)):
     db.refresh(listing)
     return listing
 
-@router.post("", response_model=ListingOut, status_code=201)
+@router.post("/", response_model=ListingOut, status_code=201)
 def create_listing(
     listing_data: ListingCreate,
     current_user: User = Depends(require_subscriber),
@@ -79,10 +78,10 @@ def create_listing(
         )
 
     listing = Listing(
-        **listing_data.dict(),
+        **{k: v for k, v in listing_data.dict().items() if k not in ['contact_phone', 'contact_whatsapp']},
         owner_id=current_user.id,
         contact_phone=listing_data.contact_phone or current_user.phone,
-        contact_whatsapp=listing_data.contact_whatsapp or current_user.phone,
+        contact_whatsapp=listing_data.contact_whatsapp or listing_data.contact_phone or current_user.phone,
     )
     db.add(listing)
     db.commit()
@@ -123,28 +122,6 @@ def delete_listing(
     db.delete(listing)
     db.commit()
 
-
 @router.get("/my/listings", response_model=List[ListingOut])
 def my_listings(current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
     return db.query(Listing).filter(Listing.owner_id == current_user.id).order_by(Listing.created_at.desc()).all()
-
-from fastapi import File, UploadFile
-from typing import List
-
-@router.post("/upload-photos")
-async def upload_photos(
-    files: List[UploadFile] = File(...),
-    current_user: User = Depends(get_current_active_user)
-):
-    """Upload photos - uses Cloudinary if configured, otherwise returns placeholder URLs"""
-    try:
-        from app.utils.cloudinary import upload_multiple
-        urls = await upload_multiple(files, folder=f"velezyricaurte/{current_user.id}")
-        return {"urls": urls}
-    except Exception:
-        # Fallback: return placeholder URLs if Cloudinary not configured
-        placeholders = [
-            "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=600&q=80",
-            "https://images.unsplash.com/photo-1511919884226-fd3cad34687c?w=600&q=80",
-        ]
-        return {"urls": placeholders[:len(files)]}

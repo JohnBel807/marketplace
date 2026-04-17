@@ -6,7 +6,8 @@ from app.routers import auth, listings, users, subscriptions, categories, cross_
 app = FastAPI(
     title="VelezYRicaurte Marketplace API",
     description="Marketplace local para la región de Vélez y Ricaurte, Santander",
-    version="1.0.0"
+    version="1.0.0",
+    redirect_slashes=False
 )
 
 app.add_middleware(

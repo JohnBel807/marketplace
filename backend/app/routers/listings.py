@@ -11,7 +11,7 @@ from app.utils.cloudinary import upload_multiple
 
 router = APIRouter()
 
-@router.get("/", response_model=ListingList)
+@router.get("", response_model=ListingList)
 def get_listings(
     page: int = Query(1, ge=1),
     page_size: int = Query(12, ge=1, le=50),
@@ -61,7 +61,7 @@ def get_listing(listing_id: int, db: Session = Depends(get_db)):
     db.refresh(listing)
     return listing
 
-@router.post("/", response_model=ListingOut, status_code=201)
+@router.post("", response_model=ListingOut, status_code=201)
 def create_listing(
     listing_data: ListingCreate,
     current_user: User = Depends(require_subscriber),

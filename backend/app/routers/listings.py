@@ -10,6 +10,7 @@ from app.schemas import ListingCreate, ListingUpdate, ListingOut, ListingList
 
 router = APIRouter()
 
+@router.get("", response_model=ListingList)
 @router.get("/", response_model=ListingList)
 def get_listings(
     page: int = Query(1, ge=1),
@@ -60,6 +61,7 @@ def get_listing(listing_id: int, db: Session = Depends(get_db)):
     db.refresh(listing)
     return listing
 
+@router.post("", response_model=ListingOut, status_code=201)
 @router.post("/", response_model=ListingOut, status_code=201)
 def create_listing(
     listing_data: ListingCreate,

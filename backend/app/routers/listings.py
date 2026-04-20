@@ -127,3 +127,21 @@ def delete_listing(
 @router.get("/my/listings", response_model=List[ListingOut])
 def my_listings(current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
     return db.query(Listing).filter(Listing.owner_id == current_user.id).order_by(Listing.created_at.desc()).all()
+
+from fastapi import File, UploadFile
+from typing import List
+
+@router.post("/upload-photos")
+@router.post("/upload-photos/")
+async def upload_photos(
+    files: List[UploadFile] = File(...),
+    current_user: User = Depends(get_current_active_user)
+):
+    try:
+        from app.utils.cloudinary import upload_multiple
+        urls = await upload_multiple(files, folder=f"marketplace/{current_user.id}")
+        return {"urls": urls}
+    except Exception as e:
+        import logging
+        logging.error(f"Error subiendo fotos: {e}")
+        raise HTTPException(status_code=500, detail=f"Error subiendo fotos: {str(e)}")

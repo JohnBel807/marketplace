@@ -11,6 +11,7 @@ import HomePage from './pages/HomePage'
 import ListingsPage from './pages/ListingsPage'
 import ListingDetailPage from './pages/ListingDetailPage'
 import { LoginPage, RegisterPage } from './pages/AuthPages'
+import { ForgotPasswordPage, ResetPasswordPage } from './pages/PasswordPages'
 import PublishPage from './pages/PublishPage'
 import EditListingPage from './pages/EditListingPage'
 import DashboardPage from './pages/DashboardPage'
@@ -49,6 +50,8 @@ export default function App() {
           <Route path="/listings/:id" element={<ListingDetailPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/terminos" element={<TerminosPage />} />
           <Route path="/privacidad" element={<PrivacidadPage />} />

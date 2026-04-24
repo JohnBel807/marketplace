@@ -46,7 +46,10 @@ export function LoginPage() {
               {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
             </div>
             <div>
-              <label className="label">Contraseña</label>
+              <div className="flex items-center justify-between mb-1.5">
+                <label className="label mb-0">Contraseña</label>
+                <Link to="/forgot-password" className="text-xs text-brand-600 hover:underline">¿Olvidaste tu contraseña?</Link>
+              </div>
               <div className="relative">
                 <input type={showPwd ? 'text' : 'password'} className="input pr-10" placeholder="••••••••"
                   {...register('password', { required: 'Requerido' })} />

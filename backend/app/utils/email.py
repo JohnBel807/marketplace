@@ -40,7 +40,74 @@ def send_email(to: str, subject: str, html_body: str) -> bool:
         return False
 
 
-def send_welcome_email(full_name: str, email: str, trial_days: int = 30) -> bool:
+def send_password_reset_email(full_name: str, email: str, reset_url: str) -> bool:
+    """Correo con link para restablecer contraseña."""
+    first_name = full_name.split()[0]
+    subject = "Restablecer tu contraseña — VelezYRicaurte"
+    html = f"""
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background:#f5f5f4;font-family:'Segoe UI',Arial,sans-serif;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f5f5f4;padding:32px 0;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+        <!-- Header -->
+        <tr><td style="background:linear-gradient(135deg,#ea580c,#c2410c);padding:40px;text-align:center;">
+          <div style="width:52px;height:52px;background:rgba(255,255,255,0.2);border-radius:12px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <span style="color:#fff;font-size:28px;font-weight:700;">V</span>
+          </div>
+          <h1 style="color:#fff;margin:0 0 8px;font-size:24px;font-weight:700;">Restablecer contraseña</h1>
+          <p style="color:rgba(255,255,255,0.85);margin:0;font-size:15px;">VelezYRicaurte — Marketplace Regional</p>
+        </td></tr>
+
+        <!-- Body -->
+        <tr><td style="padding:40px;">
+          <p style="margin:0 0 16px;font-size:16px;color:#44403c;">Hola <strong>{first_name}</strong>,</p>
+          <p style="margin:0 0 24px;font-size:15px;color:#57534e;line-height:1.6;">
+            Recibimos una solicitud para restablecer la contraseña de tu cuenta en VelezYRicaurte.
+            Haz clic en el botón de abajo para crear una nueva contraseña.
+          </p>
+
+          <div style="text-align:center;margin:32px 0;">
+            <a href="{reset_url}" style="display:inline-block;background:#ea580c;color:#ffffff;text-decoration:none;padding:16px 40px;border-radius:12px;font-size:16px;font-weight:700;">
+              Restablecer contraseña
+            </a>
+          </div>
+
+          <div style="background:#fff7ed;border:1px solid #fed7aa;border-radius:10px;padding:16px 20px;margin:24px 0;">
+            <p style="margin:0;font-size:13px;color:#9a3412;">
+              ⏰ <strong>Este enlace expira en 30 minutos.</strong><br>
+              Si no solicitaste restablecer tu contraseña, puedes ignorar este correo.
+            </p>
+          </div>
+
+          <p style="margin:0;font-size:13px;color:#a8a29e;">
+            Si el botón no funciona, copia y pega este enlace en tu navegador:<br>
+            <a href="{reset_url}" style="color:#ea580c;word-break:break-all;">{reset_url}</a>
+          </p>
+        </td></tr>
+
+        <!-- Footer -->
+        <tr><td style="padding:24px 40px;border-top:1px solid #e7e5e4;text-align:center;">
+          <p style="margin:0;font-size:13px;color:#78716c;">
+            ¿Tienes dudas? Escríbenos a
+            <a href="mailto:johnroa@velezyricaurte.com" style="color:#ea580c;">johnroa@velezyricaurte.com</a>
+          </p>
+          <p style="margin:8px 0 0;font-size:11px;color:#a8a29e;">
+            Tecnoriente J.B. · NIT 910.168.07-8 · Vélez, Santander, Colombia
+          </p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>
+"""
+    return send_email(email, subject, html)
+
     """Correo de bienvenida con info de ambos portales y el trial."""
     first_name = full_name.split()[0]
     subject = f"¡Bienvenido a VelezYRicaurte, {first_name}! 🎉 Tienes {trial_days} días gratis"

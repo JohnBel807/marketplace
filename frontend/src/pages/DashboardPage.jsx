@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { Plus, Eye, Edit2, Trash2, AlertCircle, CheckCircle, Clock } from 'lucide-react'
 import api from '../utils/api'
 import { useAuthStore } from '../context/store'
@@ -15,6 +15,8 @@ const STATUS_LABELS = {
 
 export default function DashboardPage() {
   const { user, refreshUser } = useAuthStore()
+  const [searchParams] = useSearchParams()
+  const paymentSuccess = searchParams.get('payment') === 'success'
   const [listings, setListings] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -63,6 +65,18 @@ export default function DashboardPage() {
           </div>
         ))}
       </div>
+
+      {/* Payment success banner */}
+      {paymentSuccess && (
+        <div className="bg-green-50 border-2 border-green-300 rounded-2xl p-5 flex items-center gap-4 mb-6 animate-fade-in">
+          <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center shrink-0 text-white text-2xl">✅</div>
+          <div>
+            <p className="font-bold text-green-800 text-lg">¡Pago exitoso! Plan activado</p>
+            <p className="text-green-600 text-sm">Tu plan ya está activo. ¡Empieza a publicar ahora!</p>
+          </div>
+          <Link to="/publish" className="btn-primary shrink-0 ml-auto">Publicar anuncio</Link>
+        </div>
+      )}
 
       {/* Trial banner */}
       {user?.is_trial && (

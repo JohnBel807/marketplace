@@ -48,11 +48,36 @@ export function LoginPage() {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="label mb-0">Contraseña</label>
-                <Link to="/forgot-password" className="text-xs text-brand-600 hover:underline">¿Olvidaste tu contraseña?</Link>
+                <a
+                  href="https://www.velezyricaurte.com/forgot-password"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-brand-600 hover:underline"
+                >
+                  ¿Olvidaste tu contraseña?
+                </a>
               </div>
               <div className="relative">
                 <input type={showPwd ? 'text' : 'password'} className="input pr-10" placeholder="••••••••"
                   {...register('password', { required: 'Requerido' })} />
+                <button type="button" onClick={() => setShowPwd(!showPwd)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-earth-400 hover:text-earth-600">
+                  {showPwd ? <EyeOff size={17} /> : <Eye size={17} />}
+                </button>
+              </div>
+              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
+            </div>
+            <button type="submit" disabled={isLoading} className="btn-primary w-full justify-center py-3 mt-2">
+              {isLoading ? 'Ingresando...' : 'Ingresar'}
+            </button>
+          </form>
+          <p className="text-center text-sm text-earth-400 mt-6">
+            ¿No tienes cuenta? <Link to="/register" className="text-brand-600 font-semibold hover:underline">Regístrate</Link>
+          </p>
+        </div>
+      </div>
+    </div>
+  )
                 <button type="button" onClick={() => setShowPwd(!showPwd)}
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-earth-400 hover:text-earth-600">
                   {showPwd ? <EyeOff size={17} /> : <Eye size={17} />}

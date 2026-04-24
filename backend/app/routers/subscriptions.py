@@ -184,6 +184,11 @@ def create_payment_link(
     reference = build_reference(current_user.id, data.plan.value, data.period.value)
     redirect_url = "https://www.velezyricaurte.info/dashboard?payment=success"
 
+    # Generar firma de integridad requerida por Wompi en producción
+    # SHA256(reference + amount_in_cents + currency + integrity_secret)
+    integrity_string = f"{reference}{price * 100}COP{settings.WOMPI_INTEGRITY_SECRET}"
+    integrity = hashlib.sha256(integrity_string.encode()).hexdigest()
+
     checkout_url = (
         f"https://checkout.wompi.co/p/"
         f"?public-key={settings.WOMPI_PUBLIC_KEY}"
@@ -191,6 +196,7 @@ def create_payment_link(
         f"&amount-in-cents={price * 100}"
         f"&reference={reference}"
         f"&redirect-url={redirect_url}"
+        f"&signature:integrity={integrity}"
         f"&customer-data:email={current_user.email}"
         f"&customer-data:full-name={current_user.full_name}"
     )

@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     WOMPI_PUBLIC_KEY: str = ""
     WOMPI_PRIVATE_KEY: str = ""
     WOMPI_EVENTS_SECRET: str = ""
+    WOMPI_INTEGRITY_SECRET: str = ""  # Llave de integridad — requerida en producción
 
     # WhatsApp
     WHATSAPP_NUMBER: str = "573001234567"

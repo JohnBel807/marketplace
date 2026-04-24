@@ -78,24 +78,6 @@ export function LoginPage() {
       </div>
     </div>
   )
-                <button type="button" onClick={() => setShowPwd(!showPwd)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-earth-400 hover:text-earth-600">
-                  {showPwd ? <EyeOff size={17} /> : <Eye size={17} />}
-                </button>
-              </div>
-              {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>}
-            </div>
-            <button type="submit" disabled={isLoading} className="btn-primary w-full justify-center py-3 mt-2">
-              {isLoading ? 'Ingresando...' : 'Ingresar'}
-            </button>
-          </form>
-          <p className="text-center text-sm text-earth-400 mt-6">
-            ¿No tienes cuenta? <Link to="/register" className="text-brand-600 font-semibold hover:underline">Regístrate</Link>
-          </p>
-        </div>
-      </div>
-    </div>
-  )
 }
 
 export function RegisterPage() {

@@ -25,9 +25,10 @@ class Settings(BaseSettings):
     COM_PORTAL_API_URL: str = "https://api.velezyricaurte.com/api"
     INFO_PORTAL_API_URL: str = "https://api.velezyricaurte.info/api"
 
-    # Email SMTP
-    SMTP_HOST: str = "smtp.gmail.com"
-    SMTP_PORT: int = 587
+    # Email — Resend API (preferido) o SMTP fallback
+    RESEND_API_KEY: str = ""
+    SMTP_HOST: str = "smtp.zoho.com"
+    SMTP_PORT: int = 465
     SMTP_USER: str = ""
     SMTP_PASSWORD: str = ""
 

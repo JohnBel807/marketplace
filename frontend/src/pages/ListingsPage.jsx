@@ -7,11 +7,19 @@ import ListingCard from '../components/marketplace/ListingCard'
 import ListingCardSkeleton from '../components/marketplace/ListingCardSkeleton'
 import CategoryFilter from '../components/marketplace/CategoryFilter'
 import { MUNICIPALITIES, formatNumber } from '../utils/constants'
+import { usePageSEO, CATEGORY_SEO } from '../hooks/usePageSEO'
 
 export default function ListingsPage() {
   const [searchParams, setSearchParams] = useSearchParams()
   const [showFilters, setShowFilters] = useState(false)
   const { listings, total, page, isLoading, filters, setFilter, resetFilters, fetchListings } = useListingsStore()
+  const category = searchParams.get('category') || ''
+  const catSEO = CATEGORY_SEO[category] || {}
+  usePageSEO({
+    title: catSEO.title || 'Explorar anuncios',
+    description: catSEO.description || 'Encuentra lo que buscas en la provincia de Vélez y Ricaurte, Santander.',
+    url: `https://www.velezyricaurte.info/listings${category ? `?category=${category}` : ''}`,
+  })
 
   // Sync URL params → store filters on mount
   useEffect(() => {

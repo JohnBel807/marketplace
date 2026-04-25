@@ -5,8 +5,14 @@ import { useListingsStore } from '../context/store'
 import ListingCard from '../components/marketplace/ListingCard'
 import ListingCardSkeleton from '../components/marketplace/ListingCardSkeleton'
 import { CATEGORIES, MUNICIPALITIES } from '../utils/constants'
+import { usePageSEO } from '../hooks/usePageSEO'
 
 export default function HomePage() {
+  usePageSEO({
+    title: 'El mercado local de tu región',
+    description: 'Compra y vende vehículos, maquinaria agrícola, ganado, repuestos y mucho más en Vélez y Ricaurte, Santander. El marketplace local de la provincia.',
+    url: 'https://www.velezyricaurte.info',
+  })
   const [search, setSearch] = useState('')
   const [heroCity, setHeroCity] = useState('')
   const navigate = useNavigate()

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /publish
+Disallow: /api/
+
+Sitemap: https://www.velezyricaurte.info/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1

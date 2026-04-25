@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import { MapPin, Eye, MessageCircle, Phone, Share2, ChevronLeft, ChevronRight, Star, Clock } from 'lucide-react'
 import api from '../utils/api'
 import { formatPrice, timeAgo, getCategoryMeta, PLACEHOLDER_IMAGES } from '../utils/constants'
+import { usePageSEO, getListingSEO } from '../hooks/usePageSEO'
 
 export default function ListingDetailPage() {
   const { id } = useParams()
@@ -10,6 +11,9 @@ export default function ListingDetailPage() {
   const [loading, setLoading] = useState(true)
   const [imgIdx, setImgIdx] = useState(0)
   const [copied, setCopied] = useState(false)
+
+  const seoProps = getListingSEO(listing)
+  usePageSEO(listing ? seoProps : {})
 
   useEffect(() => {
     api.get(`/listings/${id}`)

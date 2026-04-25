@@ -6,6 +6,7 @@ import WhatsAppFAB from './components/ui/WhatsAppFAB'
 import ProtectedRoute from './components/ui/ProtectedRoute'
 import PortalWidget from './components/ui/PortalWidget'
 import CrossLoginBanner from './components/ui/CrossLoginBanner'
+import TraeNosWidget from './components/ui/TraeNosWidget'
 
 import HomePage from './pages/HomePage'
 import ListingsPage from './pages/ListingsPage'
@@ -35,6 +36,7 @@ function Layout({ children }) {
       <Footer />
       <WhatsAppFAB />
       <PortalWidget />
+      <TraeNosWidget />
     </div>
   )
 }

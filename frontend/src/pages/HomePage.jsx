@@ -97,6 +97,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* TraeNos Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-8">
+        <a
+          href="https://traenos.velezyricaurte.com?utm_source=info&utm_medium=banner_home"
+          target="_blank"
+          rel="noreferrer"
+          className="block rounded-3xl overflow-hidden group"
+          style={{background: 'linear-gradient(135deg, #1e3a5f 0%, #0f2744 100%)'}}
+        >
+          <div className="flex flex-col md:flex-row items-center justify-between p-8 md:p-10 gap-6">
+            <div className="flex items-center gap-5">
+              <div className="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center shrink-0">
+                <span className="text-3xl">🛵</span>
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="text-white font-display font-bold text-2xl">TraeNos</span>
+                  <span className="bg-blue-400/20 text-blue-200 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-blue-400/30">Nuevo aliado</span>
+                </div>
+                <p className="text-blue-200 text-sm leading-relaxed max-w-md">
+                  Domicilios colaborativos para zonas rurales. Ahorra hasta <strong className="text-white">80%</strong> en envíos compartiendo ruta con vecinos de tu zona.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="hidden md:flex flex-col items-center">
+                <span className="text-3xl font-display font-bold text-white">80%</span>
+                <span className="text-blue-300 text-xs">Ahorro promedio</span>
+              </div>
+              <div className="bg-white text-blue-900 font-bold px-6 py-3 rounded-xl group-hover:bg-blue-50 transition-colors text-sm whitespace-nowrap">
+                Pedir domicilio →
+              </div>
+            </div>
+          </div>
+        </a>
+      </section>
+
       {/* Featured */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 pb-12">
         <div className="flex items-center justify-between mb-6">

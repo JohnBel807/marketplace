@@ -6,7 +6,7 @@ export default function Footer() {
   return (
     <footer className="bg-earth-900 text-earth-300 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="flex items-center gap-2 mb-4">
@@ -56,8 +56,30 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contacto */}
+          {/* TraeNos aliado */}
           <div>
+            <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Aliados</h4>
+            <a
+              href="https://traenos.velezyricaurte.com?utm_source=info&utm_medium=footer"
+              target="_blank"
+              rel="noreferrer"
+              className="block rounded-xl overflow-hidden hover:opacity-90 transition-opacity"
+              style={{background:'#1e3a5f', border:'1px solid rgba(255,255,255,0.1)'}}
+            >
+              <div className="p-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xl">🛵</span>
+                  <span className="font-bold text-white text-sm">TraeNos</span>
+                </div>
+                <p className="text-blue-300 text-xs leading-relaxed mb-3">
+                  Domicilios colaborativos para zonas rurales. Ahorra hasta 80% en envíos.
+                </p>
+                <span className="text-xs font-semibold text-white bg-white/10 px-3 py-1.5 rounded-lg inline-block">
+                  Pedir domicilio →
+                </span>
+              </div>
+            </a>
+          </div>
             <h4 className="font-semibold text-white mb-4 text-sm uppercase tracking-wider">Contacto</h4>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">

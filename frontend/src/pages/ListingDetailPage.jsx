@@ -181,6 +181,16 @@ export default function ListingDetailPage() {
                   <Phone size={16} /> Llamar
                 </a>
               )}
+              {/* TraeNos */}
+              <a
+                href={`https://traenos.velezyricaurte.com?utm_source=info&utm_medium=listing&utm_content=${listing.id}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-semibold text-sm transition-colors border-2"
+                style={{background:'#f0f7ff', borderColor:'#1e3a5f', color:'#1e3a5f'}}
+              >
+                🛵 Solicitar envío con TraeNos
+              </a>
             </div>
 
             <hr className="my-4 border-earth-100" />

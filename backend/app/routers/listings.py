@@ -126,8 +126,9 @@ def delete_listing(
 
 @router.get("/my/listings", response_model=List[ListingOut])
 def my_listings(current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
+    if current_user.is_admin:
+        return db.query(Listing).order_by(Listing.created_at.desc()).all()
     return db.query(Listing).filter(Listing.owner_id == current_user.id).order_by(Listing.created_at.desc()).all()
-
 from fastapi import File, UploadFile
 from typing import List
 

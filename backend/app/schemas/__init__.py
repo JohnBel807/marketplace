@@ -28,6 +28,7 @@ class UserOut(BaseModel):
     phone: Optional[str]
     city: str
     avatar_url: Optional[str]
+    is_admin: bool
     subscription_plan: SubscriptionPlan
     subscription_status: str
     has_active_subscription: bool

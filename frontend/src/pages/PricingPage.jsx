@@ -66,20 +66,28 @@ export default function PricingPage() {
 
       {/* Toggle mensual / anual */}
       <div className="flex items-center justify-center gap-4 mb-10">
-        <span className={`text-sm font-semibold ${period === 'monthly' ? 'text-earth-900' : 'text-earth-400'}`}>
+        <span
+          onClick={() => setPeriod('monthly')}
+          className={`text-sm font-semibold cursor-pointer transition-colors ${period === 'monthly' ? 'text-earth-900' : 'text-earth-400'}`}
+        >
           Mensual
         </span>
         <button
           onClick={() => setPeriod(p => p === 'monthly' ? 'annual' : 'monthly')}
-          className={`relative w-14 h-7 rounded-full transition-colors duration-200 ${
-            period === 'annual' ? 'bg-brand-500' : 'bg-earth-300'
-          }`}
+          role="switch"
+          aria-checked={period === 'annual'}
+          className="relative inline-flex items-center w-14 h-7 rounded-full transition-colors duration-300 focus:outline-none"
+          style={{backgroundColor: period === 'annual' ? '#f97316' : '#d6d3d1'}}
         >
-          <span className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow transition-transform duration-200 ${
-            period === 'annual' ? 'translate-x-8' : 'translate-x-1'
-          }`} />
+          <span
+            className="inline-block w-5 h-5 bg-white rounded-full shadow-md transition-transform duration-300"
+            style={{transform: period === 'annual' ? 'translateX(36px)' : 'translateX(4px)'}}
+          />
         </button>
-        <span className={`text-sm font-semibold ${period === 'annual' ? 'text-earth-900' : 'text-earth-400'}`}>
+        <span
+          onClick={() => setPeriod('annual')}
+          className={`text-sm font-semibold cursor-pointer transition-colors ${period === 'annual' ? 'text-earth-900' : 'text-earth-400'}`}
+        >
           Anual
         </span>
         {period === 'annual' && (

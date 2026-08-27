@@ -201,6 +201,6 @@ Configurar en Vercel: `VITE_API_URL=https://tu-backend.railway.app/api`
 
 - **Empresa:** Tecnoriente J.B.
 - **NIT:** 910.168.07-8
-- **Correo:** info@velezyricaurte.com
+- **Correo:** johnroa@velezyricaurte.com
 - **Ubicación:** Vélez, Santander, Colombia
 - **Ley de datos:** Cumple con Ley 1581 de 2012 (Habeas Data)
